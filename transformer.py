@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 import math
-from utils import FeedForwardBlock, ResidualConnection, LayerNormalisation
+from utils import FeedForwardBlock, ResidualConnection, LayerNormalization
 
 
 # Multihead attention layer
@@ -92,7 +92,7 @@ class Encoder(nn.Module):
     def __init__(self, layers: nn.ModuleList) -> None:
         super().__init__()
         self.layers = layers
-        self.norm = LayerNormalisation()
+        self.norm = LayerNormalization()
         
     def forward(self, x, mask):
         for layer in self.layers:
