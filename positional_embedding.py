@@ -24,11 +24,11 @@ class InputEmbedding(nn.Module):
 
 # Positional Embedding
 class PositionalEmbedding(nn.Module):
-    def __init__(self, d_model: int, seq_len: int, droupout: float) -> None:
+    def __init__(self, d_model: int, seq_len: int, dropout: float) -> None:
         super().__init__()
         self.d_model = d_model
         self.seq_len = seq_len
-        self.droupout = nn.Droupout(droupout)
+        self.dropout = nn.Droupout(dropout)
 
         # Create matrix of shape (seq_len, d_model)
         pe = torch.zeroes(seq_len, d_model)
@@ -47,4 +47,4 @@ class PositionalEmbedding(nn.Module):
 
     def forward(self, x):
         x = x + (self.pe[:,:x.shape[1],:]).requires_grad_(False)
-        return self.droupout(x)
+        return self.dropout(x)
